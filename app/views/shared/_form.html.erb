@@ -1,0 +1,17 @@
+<!-- remember to use == to compare in embedded conditionals or they will fail silently -->
+<% if act == :login %>
+  <% formtitle = "Log in" %>
+  <% buttontext = "Log in" %>
+  <% action_url = session_url %>
+<% elsif act == :signup %>
+  <% formtitle = "Sign up" %>
+  <% buttontext = "Sign up" %>
+  <% action_url = users_url %>
+<% end %>
+  <h1 class="formtitle"> <%= formtitle %> </h1>
+<form action = "<%= action_url %>" method="POST">
+  <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token">
+  <input type="text" name="user[email]">
+  <input type="text" name="user[password]">
+  <input type="submit" value="<%= buttontext %>">
+</form>
